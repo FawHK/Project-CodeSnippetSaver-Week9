@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F54CCD002CA2DD2D00B12C0E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */; };
+		F54CCD022CA2E08F00B12C0E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCD012CA2E08F00B12C0E /* LoginView.swift */; };
 		F57105CE2CA1659400E2922C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57105C82CA1659400E2922C /* Preview Assets.xcassets */; };
 		F57105CF2CA1659400E2922C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57105CA2CA1659400E2922C /* Assets.xcassets */; };
 		F57105D02CA1659400E2922C /* CODSnippetSaverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57105CB2CA1659400E2922C /* CODSnippetSaverApp.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		F54CCD012CA2E08F00B12C0E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F571059B2CA1658C00E2922C /* CODSnippetSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CODSnippetSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57105AB2CA1658E00E2922C /* CODSnippetSaverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CODSnippetSaverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57105B52CA1658E00E2922C /* CODSnippetSaverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CODSnippetSaverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F54CCCFE2CA2DD0E00B12C0E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		F57105922CA1658C00E2922C = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +122,7 @@
 		F57105C92CA1659400E2922C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F54CCD012CA2E08F00B12C0E /* LoginView.swift */,
 				F57105E02CA1766000E2922C /* CODSnippetView.swift */,
 			);
 			path = Views;
@@ -120,6 +133,7 @@
 			children = (
 				F57105CA2CA1659400E2922C /* Assets.xcassets */,
 				F57105CB2CA1659400E2922C /* CODSnippetSaverApp.swift */,
+				F54CCCFE2CA2DD0E00B12C0E /* ViewModels */,
 				F57105C92CA1659400E2922C /* Views */,
 				F57105E22CA1768400E2922C /* Preview Assets */,
 				F57105DB2CA173D500E2922C /* GoogleService-Info.plist */,
@@ -319,6 +333,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F57105D02CA1659400E2922C /* CODSnippetSaverApp.swift in Sources */,
+				F54CCD002CA2DD2D00B12C0E /* UserViewModel.swift in Sources */,
+				F54CCD022CA2E08F00B12C0E /* LoginView.swift in Sources */,
 				F57105E12CA1766000E2922C /* CODSnippetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,7 +496,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"CODSnippetSaver/Views\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CODSnippetSaver/CODSnippetSaver\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -512,7 +528,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CODSnippetSaver/Views\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CODSnippetSaver/CODSnippetSaver\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

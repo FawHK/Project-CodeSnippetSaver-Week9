@@ -12,6 +12,10 @@ import FirebaseAuth
 @main
 struct CODSnippetSaverApp: App {
     
+    // MARK: - Properties
+    
+    @StateObject private var userViewModel =  UserViewModel()
+    
     // MARK: - Init
     
     init() {
@@ -24,7 +28,16 @@ struct CODSnippetSaverApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CODSnippetView()
+            if userViewModel.userIsLoggedIn {
+                CODSnippetView()
+                    .preferredColorScheme(.dark)
+            } else {
+                LoginView(userViewModel: userViewModel)
+                    .preferredColorScheme(.dark)
+            }
+            
+            
         }
+        
     }
 }
