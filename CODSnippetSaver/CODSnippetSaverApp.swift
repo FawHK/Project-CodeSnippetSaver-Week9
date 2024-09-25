@@ -29,15 +29,15 @@ struct CODSnippetSaverApp: App {
     var body: some Scene {
         WindowGroup {
             if userViewModel.userIsLoggedIn {
-                CODSnippetView()
+//                CategoryListView()
+                ProfileView()
+                    .environmentObject(UserViewModel())
                     .preferredColorScheme(.dark)
             } else {
-                LoginView(userViewModel: userViewModel)
+                LoginView()
+                    .environmentObject(UserViewModel())
                     .preferredColorScheme(.dark)
             }
-            
-            
-        }
-        
+        } 
     }
 }
