@@ -23,12 +23,12 @@ class UserViewModel: ObservableObject {
     
     
     // MARK: - Init
-     
+    
     init() {
         checkAuth()
     }
     
-
+    
     
     // MARK: - Function
     
@@ -66,7 +66,7 @@ class UserViewModel: ObservableObject {
             self.createUser(withId: authResult.user.uid, email: authResult.user.email)
         }
     }
-
+    
     func login(email: String, password: String) {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { authResult, error in
             if let error {
@@ -82,7 +82,7 @@ class UserViewModel: ObservableObject {
     }
     
     private func handleError(_ error: Error) {
-    
+        
         switch error {
         case AuthErrorCode.emailAlreadyInUse:
             errorMessage = "The email is already in use"
@@ -97,10 +97,10 @@ class UserViewModel: ObservableObject {
     
     private func createUser(withId id: String, email: String?) {
         let newUser = FireUser(id: id, email: email ,registeredOn: Date())
-
-//        let user = FireUser(id: id, email: email, registeredOn: Date(), name: user.name, nickName: user?.nickName, age: user?.age)
-     
-
+        
+        //        let user = FireUser(id: id, email: email, registeredOn: Date(), name: user.name, nickName: user?.nickName, age: user?.age)
+        
+        
         do {
             try FirebaseManager.shared.database.collection("Users").document(id).setData(from: newUser)
             self.fetchUser(with: id)
@@ -126,7 +126,14 @@ class UserViewModel: ObservableObject {
             }
         }
     }
-    func editUser(withId id: String, email: String, name: String, age: String, nickName: String) {
-        FirebaseManager.shared.database.collection("Users").document(id).updateData(["email": email,"name": name, "age": age, "nickName": nickName])
+    func editUserDetails(withId id: String, email: String, name: String, age: String, nickName: String) {
+        FirebaseManager.shared.database.collection("Users").document(id).updateData(["email": email,"name": name, "age": age, "nickName": nickName]) { error in
+            if error != nil {
+                print("Details update Failed")
+                return
+            }
+            print("Details updated")
+        }
+   
     }
 }

@@ -50,10 +50,7 @@ struct EditProfileView: View {
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        userViewModel.editUser(withId: userViewModel.user?.id ?? "", email: email, name: name, age: age, nickName: nickname)
-                        isPresented.toggle()
-                    } label: {
+                    Button(action: editUser) {
                        Text("Save")
                     }
                 }
@@ -65,6 +62,13 @@ struct EditProfileView: View {
                 nickname = userViewModel.user?.nickName ?? ""
             }
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func editUser() {
+        userViewModel.editUserDetails(withId: userViewModel.user?.id ?? "", email: email, name: name, age: age, nickName: nickname)
+        isPresented.toggle()
     }
 }
 

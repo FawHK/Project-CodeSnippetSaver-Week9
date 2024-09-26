@@ -11,9 +11,10 @@ struct SnippetListView: View {
     
     // MARK: - Properties
     
-    @State var snippets = ["empty"]
-    @State private var newSnippet: String = ""
+    @EnvironmentObject var snippetViewModel: SnippetViewModel
     
+    @State private var newSnippet: String = ""
+    @State private var showAddSheet: Bool = false
     
     
     // MARK: - Body
@@ -21,41 +22,52 @@ struct SnippetListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Add Snippet")
-                    .font(.subheadline)
-                    .bold()
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                HStack {
-                    TextField("Your Code snippets", text: $newSnippet)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                    Button {
-                        addSnippet()
-                    } label: {
-                        Text("Add")
+                List {
+                    ForEach(snippetViewModel.snippets) { snippet in
+                        NavigationLink {
+                            SnippetDetailView(snippet: snippet, isPresented: $showAddSheet)
+                        } label: {
+                            Text(snippet.title)
+                            Text(snippet.code)
+                            
+                                .swipeActions {
+                                    Button {
+                                        snippetViewModel.deleteSnippet(with: snippet.id)
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .tint(.red)
+                                    }
+                                }
+                        }
+                        
                     }
-                    .padding(.trailing)
                 }
                 
-                List(snippets, id: \.self) { snippet in
-                    Section("Categories") {
-                        Text(snippet)
-                    }
+                Button {
+                    showAddSheet.toggle()
+                } label: {
+                    Text("Add")
+                        .foregroundStyle(.blue)
                 }
             }
+            .navigationTitle("Your Snippets")
         }
+        
+        .sheet(isPresented: $showAddSheet, content: {
+            SnippetAddView(isPresented: $showAddSheet)
+        })
+        .environmentObject(snippetViewModel)
     }
     
     // MARK: - Functions
     
-    private func addSnippet() {
-        snippets.append(newSnippet)
-        newSnippet = ""
-    }
+    //    private func addSnippet() {
+    //        snippets.append(newSnippet)
+    //        newSnippet = ""
+    //    }
 }
 
 #Preview {
     SnippetListView()
+        .environmentObject(SnippetViewModel())
 }
