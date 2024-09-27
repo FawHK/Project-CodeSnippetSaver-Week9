@@ -13,8 +13,8 @@ struct SnippetListView: View {
     
     @EnvironmentObject var snippetViewModel: SnippetViewModel
     
-    @State private var newSnippet: String = ""
     @State private var showAddSheet: Bool = false
+    
     
     
     // MARK: - Body
@@ -25,7 +25,7 @@ struct SnippetListView: View {
                 List {
                     ForEach(snippetViewModel.snippets) { snippet in
                         NavigationLink {
-                            SnippetDetailView(snippet: snippet, isPresented: $showAddSheet)
+                            SnippetDetailView(snippet: snippet)
                         } label: {
                             Text(snippet.title)
                             Text(snippet.code)
@@ -39,7 +39,7 @@ struct SnippetListView: View {
                                     }
                                 }
                         }
-                        
+                      
                     }
                 }
                 
@@ -51,20 +51,12 @@ struct SnippetListView: View {
                 }
             }
             .navigationTitle("Your Snippets")
+            .sheet(isPresented: $showAddSheet) {
+                SnippetAddView(isPresented: $showAddSheet)
+            }
         }
-        
-        .sheet(isPresented: $showAddSheet, content: {
-            SnippetAddView(isPresented: $showAddSheet)
-        })
         .environmentObject(snippetViewModel)
     }
-    
-    // MARK: - Functions
-    
-    //    private func addSnippet() {
-    //        snippets.append(newSnippet)
-    //        newSnippet = ""
-    //    }
 }
 
 #Preview {

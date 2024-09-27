@@ -25,9 +25,6 @@ struct EditProfileView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Change Email") {
-                    TextField("", text: $email)
-                }
                 Section("Name") {
                     TextField("", text: $name)
                 }
@@ -56,7 +53,6 @@ struct EditProfileView: View {
                 }
             }
             .onAppear {
-                email = userViewModel.user?.email ?? ""
                 name = userViewModel.user?.name ?? ""
                 age = userViewModel.user?.age ?? ""
                 nickname = userViewModel.user?.nickName ?? ""
@@ -67,7 +63,7 @@ struct EditProfileView: View {
     // MARK: - Functions
     
     private func editUser() {
-        userViewModel.editUserDetails(withId: userViewModel.user?.id ?? "", email: email, name: name, age: age, nickName: nickname)
+        userViewModel.editUserDetails(withId: userViewModel.user?.id ?? "", name: name, age: age, nickName: nickname)
         isPresented.toggle()
     }
 }

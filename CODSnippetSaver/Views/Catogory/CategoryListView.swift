@@ -11,7 +11,7 @@ struct CategoryListView: View {
     
     // MARK: - Properties
     
-    @StateObject private var snippetViewModel = SnippetViewModel()
+    @EnvironmentObject var snippetViewModel: SnippetViewModel
     
     @State var categories = ["Swift"]
     @State private var newCategory: String = ""
@@ -51,6 +51,7 @@ struct CategoryListView: View {
                 }
             }
         }
+        .environmentObject(snippetViewModel)
     }
     // MARK: - Functions
     
@@ -62,4 +63,5 @@ struct CategoryListView: View {
 
 #Preview {
     CategoryListView()
+        .environmentObject(SnippetViewModel())
 }

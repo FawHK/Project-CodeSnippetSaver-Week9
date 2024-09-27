@@ -10,25 +10,27 @@ import SwiftUI
 struct SnippetAddView: View {
     
     // MARK: - Properties
-   
+    
     @EnvironmentObject var snippetViewModel: SnippetViewModel
     
     @State private var title = ""
     @State private var newSnippet: String = ""
     @Binding var isPresented: Bool
-    private var snippetToEdit: FireSnippet?
     
+    var snippet: FireSnippet?
+
     
     
     
     // MARK: - Init
-    init(isPresented: Binding<Bool>, snippetToEdit: FireSnippet? = nil) {
-        self._isPresented = isPresented
-        self.snippetToEdit = snippetToEdit
-        if let snippet = snippetToEdit {
-            title = snippet.title
-            newSnippet = snippet.code
+    init(snippet: FireSnippet? = nil, isPresented: Binding<Bool>) {
+        if let snippet {
+            self.snippet = snippet
+            self._newSnippet = State(initialValue: snippet.code)
+            self._title = State(initialValue: snippet.title)
         }
+        self._isPresented = isPresented
+       
     }
     
     // MARK: - Body
@@ -45,14 +47,16 @@ struct SnippetAddView: View {
                             .frame(height: 500)
                     }
                 }
-                Button(action: saveSnippet) {
-                    Text("Save")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity)
-                        .background(.red.opacity(0.5))
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .padding(.horizontal)
+                HStack {
+                    Button(action: saveSnippet) {
+                        Text("Save")
+                            .padding()
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .background(.red.opacity(0.5))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .padding(.horizontal)
+                    }
                 }
             }
             .navigationTitle("Add Snippet")
@@ -74,21 +78,18 @@ struct SnippetAddView: View {
     // MARK: - Functions
     
     private func saveSnippet() {
-        if let snippetToEdit = snippetToEdit {
-            let updatedSnippet = snippetToEdit
-            title = updatedSnippet.title
-            newSnippet = updatedSnippet.code
-            snippetViewModel.updateSnippet(with: snippetToEdit.id, title: title, code: newSnippet)
+        if let snippet {
+            snippetViewModel.updateSnippet(with: snippet.id, title: title , code: newSnippet)
         } else {
             snippetViewModel.addSnippet(title: title, code: newSnippet)
-            isPresented.toggle()
-            title = ""
-            newSnippet = ""
         }
+        isPresented.toggle()
+//        title = ""
+//        newSnippet = ""
     }
 }
 
 #Preview {
-    SnippetAddView(isPresented: .constant(true))
+    SnippetAddView(snippet: FireSnippet(title: "sdsd", code: "sdsd", userId: "erwe"), isPresented: .constant(true))
         .environmentObject(SnippetViewModel())
 }

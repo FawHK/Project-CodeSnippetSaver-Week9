@@ -15,7 +15,8 @@ struct CODSnippetSaverApp: App {
     // MARK: - Properties
     
     @StateObject private var userViewModel =  UserViewModel()
-    @StateObject private var snippetViewModel = SnippetViewModel()
+    
+    
     
     // MARK: - Init
     
@@ -30,13 +31,11 @@ struct CODSnippetSaverApp: App {
     var body: some Scene {
         WindowGroup {
             if userViewModel.userIsLoggedIn {
-//                CategoryListView()
-                SnippetListView()
-                    .environmentObject(SnippetViewModel())
+                NavigatorView()
                     .preferredColorScheme(.dark)
             } else {
                 LoginView()
-                    .environmentObject(UserViewModel())
+                    .environmentObject(userViewModel)
                     .preferredColorScheme(.dark)
             }
         } 

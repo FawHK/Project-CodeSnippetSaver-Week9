@@ -12,8 +12,8 @@ import FirebaseFirestore
 struct FireSnippet: Codable, Identifiable {
     @DocumentID var id: String?
     
-    let title: String
-    let code: String
-    let userId: String?
+    var title: String
+    var code: String
+    var userId: String
     
 }

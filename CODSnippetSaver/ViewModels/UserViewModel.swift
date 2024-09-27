@@ -97,10 +97,7 @@ class UserViewModel: ObservableObject {
     
     private func createUser(withId id: String, email: String?) {
         let newUser = FireUser(id: id, email: email ,registeredOn: Date())
-        
-        //        let user = FireUser(id: id, email: email, registeredOn: Date(), name: user.name, nickName: user?.nickName, age: user?.age)
-        
-        
+         
         do {
             try FirebaseManager.shared.database.collection("Users").document(id).setData(from: newUser)
             self.fetchUser(with: id)
@@ -126,8 +123,8 @@ class UserViewModel: ObservableObject {
             }
         }
     }
-    func editUserDetails(withId id: String, email: String, name: String, age: String, nickName: String) {
-        FirebaseManager.shared.database.collection("Users").document(id).updateData(["email": email,"name": name, "age": age, "nickName": nickName]) { error in
+    func editUserDetails(withId id: String, name: String, age: String, nickName: String) {
+        FirebaseManager.shared.database.collection("Users").document(id).updateData(["name": name, "age": age, "nickName": nickName]) { error in
             if error != nil {
                 print("Details update Failed")
                 return

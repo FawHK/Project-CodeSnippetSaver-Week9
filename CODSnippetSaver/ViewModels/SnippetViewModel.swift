@@ -13,7 +13,7 @@ class SnippetViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var snippets: [FireSnippet] = []
-    @Published var snippet: FireSnippet?
+
     
     
     
@@ -78,13 +78,13 @@ class SnippetViewModel: ObservableObject {
         
         let data = ["title": title, "code": code]
         
-        FirebaseManager.shared.database.collection("posts").document(id).updateData(data) { error in
+        FirebaseManager.shared.database.collection("Snippets").document(id).updateData(data) { error in
             if let error {
-                print("Post wurde nicht aktualisiert", error)
+                print("Snippet update Failed", error)
                 return
             }
             
-            print("Post aktualisiert!")
+            print("Snippet updated!")
         }
     }
 }

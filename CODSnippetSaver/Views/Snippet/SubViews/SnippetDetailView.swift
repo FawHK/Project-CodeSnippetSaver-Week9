@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SnippetDetailView: View {
     
     // MARK: - Properties
@@ -14,10 +15,8 @@ struct SnippetDetailView: View {
     @EnvironmentObject var snippetViewModel: SnippetViewModel
     
     let snippet: FireSnippet
-//    var currentSnippet: FireSnippet?
-    @State private var title = ""
-    @State private var newSnippet: String = ""
-    @Binding var isPresented: Bool
+
+    @State private var isPresented = false
     
    
     
@@ -25,23 +24,27 @@ struct SnippetDetailView: View {
     // MARK: - Body
     
     var body: some View {
-        VStack {
-//            List(snippet)
-
-            Text(snippet.title)
-            Text(snippet.code)
-            Text(snippet.userId ?? "")
-            
-            Button {
-                isPresented.toggle()
-            } label: {
-                Text("Edit")
+        NavigationStack {
+            VStack {
+                Text(snippet.title)
+                Text(snippet.code)
+                
+                Button {
+                    isPresented.toggle()
+                } label: {
+                    Text("Edit")
+                }
             }
         }
+        .sheet(isPresented: $isPresented) {
+            SnippetAddView(snippet: snippet, isPresented: $isPresented)
+        }
+        .environmentObject(snippetViewModel)
     }
+    
 }
 
 #Preview {
-    SnippetDetailView(snippet: FireSnippet(title: "TEST", code: "FUNCTIONS", userId: "1234567"), isPresented: .constant(true))
+    SnippetDetailView(snippet: FireSnippet(title: "TEST", code: "FUNCTIONS", userId: "1234567"))
         .environmentObject(SnippetViewModel())
 }
