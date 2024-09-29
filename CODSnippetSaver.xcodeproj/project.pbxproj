@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F53575022CA9951C005BF63E /* PrimaryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53575012CA9951C005BF63E /* PrimaryButtonView.swift */; };
+		F538A8A22CA9D1AD00F13DA7 /* FireCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538A8A12CA9D1AD00F13DA7 /* FireCategory.swift */; };
+		F538A8A42CA9D21C00F13DA7 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F538A8A32CA9D21C00F13DA7 /* CategoryViewModel.swift */; };
 		F54CCD002CA2DD2D00B12C0E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */; };
 		F54CCD022CA2E08F00B12C0E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCD012CA2E08F00B12C0E /* LoginView.swift */; };
 		F54CCD042CA2E6DE00B12C0E /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCD032CA2E6DE00B12C0E /* CategoryListView.swift */; };
 		F54CCD062CA2E71500B12C0E /* SnippetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54CCD052CA2E71500B12C0E /* SnippetListView.swift */; };
-		F56D8E3E2CA6E7E4003267B6 /* SheetMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56D8E3D2CA6E7E4003267B6 /* SheetMode.swift */; };
 		F56DF89A2CA46AD30003A2F6 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56DF8992CA46AD30003A2F6 /* EditProfileView.swift */; };
 		F57105CE2CA1659400E2922C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57105C82CA1659400E2922C /* Preview Assets.xcassets */; };
 		F57105CF2CA1659400E2922C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F57105CA2CA1659400E2922C /* Assets.xcassets */; };
@@ -50,11 +52,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F53575012CA9951C005BF63E /* PrimaryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonView.swift; sourceTree = "<group>"; };
+		F538A8A12CA9D1AD00F13DA7 /* FireCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireCategory.swift; sourceTree = "<group>"; };
+		F538A8A32CA9D21C00F13DA7 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F54CCD012CA2E08F00B12C0E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F54CCD032CA2E6DE00B12C0E /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		F54CCD052CA2E71500B12C0E /* SnippetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetListView.swift; sourceTree = "<group>"; };
-		F56D8E3D2CA6E7E4003267B6 /* SheetMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMode.swift; sourceTree = "<group>"; };
 		F56DF8992CA46AD30003A2F6 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		F571059B2CA1658C00E2922C /* CODSnippetSaver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CODSnippetSaver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F57105AB2CA1658E00E2922C /* CODSnippetSaverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CODSnippetSaverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,11 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F53575002CA994CE005BF63E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F53575012CA9951C005BF63E /* PrimaryButtonView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F54CCCFE2CA2DD0E00B12C0E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				F54CCCFF2CA2DD2D00B12C0E /* UserViewModel.swift */,
 				F5E943392CA567E300BE3072 /* SnippetViewModel.swift */,
+				F538A8A32CA9D21C00F13DA7 /* CategoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -159,12 +172,12 @@
 			path = Catogory;
 			sourceTree = "<group>";
 		};
-		F56DF89F2CA4747E0003A2F6 /* Login */ = {
+		F56DF89F2CA4747E0003A2F6 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				F54CCD012CA2E08F00B12C0E /* LoginView.swift */,
 			);
-			path = Login;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		F57105922CA1658C00E2922C = {
@@ -193,10 +206,11 @@
 			children = (
 				F5E9AAEB2CA6D4B00010BEE0 /* NavigatorView.swift */,
 				F57105E02CA1766000E2922C /* CODSnippetView.swift */,
-				F56DF89F2CA4747E0003A2F6 /* Login */,
+				F56DF89F2CA4747E0003A2F6 /* Authentication */,
 				F56DF89E2CA4745C0003A2F6 /* Catogory */,
 				F56DF89D2CA474540003A2F6 /* Snippet */,
 				F56DF89B2CA474060003A2F6 /* Profile */,
+				F53575002CA994CE005BF63E /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +251,7 @@
 			children = (
 				F5ABD4BA2CA42A5600195808 /* FireUser.swift */,
 				F5E943372CA5674A00BE3072 /* FireSnippet.swift */,
+				F538A8A12CA9D1AD00F13DA7 /* FireCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				F5E9AAE92CA6C1850010BEE0 /* Tab.swift */,
-				F56D8E3D2CA6E7E4003267B6 /* SheetMode.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -458,17 +472,19 @@
 				F5E9AAEC2CA6D4B00010BEE0 /* NavigatorView.swift in Sources */,
 				F5ABD4BD2CA43AB900195808 /* ProfileView.swift in Sources */,
 				F5E9433A2CA567E300BE3072 /* SnippetViewModel.swift in Sources */,
+				F538A8A22CA9D1AD00F13DA7 /* FireCategory.swift in Sources */,
 				F5C670E92CA5B81400AFE233 /* SnippetDetailView.swift in Sources */,
 				F57105D02CA1659400E2922C /* CODSnippetSaverApp.swift in Sources */,
-				F56D8E3E2CA6E7E4003267B6 /* SheetMode.swift in Sources */,
 				F5ABD4B92CA4241A00195808 /* FirebaseManager.swift in Sources */,
 				F5E943382CA5674A00BE3072 /* FireSnippet.swift in Sources */,
+				F538A8A42CA9D21C00F13DA7 /* CategoryViewModel.swift in Sources */,
 				F54CCD002CA2DD2D00B12C0E /* UserViewModel.swift in Sources */,
 				F5ABD4BB2CA42A5600195808 /* FireUser.swift in Sources */,
 				F5E9AAEA2CA6C1850010BEE0 /* Tab.swift in Sources */,
 				F5E9433D2CA56E8B00BE3072 /* SnippetAddView.swift in Sources */,
 				F54CCD022CA2E08F00B12C0E /* LoginView.swift in Sources */,
 				F57105E12CA1766000E2922C /* CODSnippetView.swift in Sources */,
+				F53575022CA9951C005BF63E /* PrimaryButtonView.swift in Sources */,
 				F54CCD042CA2E6DE00B12C0E /* CategoryListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

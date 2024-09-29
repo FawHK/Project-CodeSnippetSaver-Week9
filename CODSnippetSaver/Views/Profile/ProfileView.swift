@@ -20,7 +20,6 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationStack {
-            
             GeometryReader { geometry in
                 let userDetails = [
                     "ID: \(userViewModel.user?.id ?? "")",
@@ -34,6 +33,7 @@ struct ProfileView: View {
                     ForEach(userDetails, id: \.self) { text in
                         Text(text)
                             .font(.subheadline)
+                            .bold()
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(.blue.opacity(0.3))
@@ -41,44 +41,36 @@ struct ProfileView: View {
                     }
                 }
             }
+            .padding()
             
-            
-            
-            
-            //            VStack(alignment: .leading) {
-            //                Text("Email: \(userViewModel.user?.email ?? "nothing")")
-            //                Text("User ID: \(userViewModel.user?.id ?? "no id")")
-            //                Text("Name: \(userViewModel.user?.name ?? "")")
-            //                Text("Nickname: \(userViewModel.user?.age ?? "")")
-            //                Text("Nickname: \(userViewModel.user?.nickName ?? "")")
-            //                Text("Registered on: \(userViewModel.user?.registeredOn.formatted(date: .abbreviated, time: .omitted) ?? "no date")")
-            //
-            //
-            //            }
-            //            .frame(maxWidth: .infinity)
-            //            .background(.gray.opacity(0.3))
+            PrimaryButtonView(title: "Sign out", action: logout)
             
             .navigationTitle("Profile")
-            //            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
-                    Button {
-                        showEditSheet.toggle()
-                    } label: {
+                    Button(action: editProfile) {
                         Text("Edit")
                             .foregroundStyle(.blue)
                     }
-                    
                 }
             }
-            
         }
         .sheet(isPresented: $showEditSheet) {
             EditProfileView(isPresented: $showEditSheet)
                 .presentationDetents([.medium, .large])
         }
-        
         .environmentObject(userViewModel)
+    }
+    
+    // MARK: - Functions
+    
+    private func logout() {
+        userViewModel.logout()
+    }
+    
+    private func editProfile() {
+        showEditSheet.toggle()
     }
 }
 

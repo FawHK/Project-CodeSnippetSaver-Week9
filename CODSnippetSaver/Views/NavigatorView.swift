@@ -12,6 +12,8 @@ struct NavigatorView: View {
     // MARK: - Properties
     
     @StateObject private var snippetViewModel = SnippetViewModel()
+    @StateObject private var categoryViewModel = CategoryViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
     
     
     
@@ -24,6 +26,7 @@ struct NavigatorView: View {
                     Label(Tab.categories.name, systemImage: Tab.categories.icon)
                 }
                 .environmentObject(snippetViewModel)
+                .environmentObject(categoryViewModel)
             
             SnippetListView()
                 .tabItem {
@@ -35,7 +38,10 @@ struct NavigatorView: View {
                 .tabItem {
                     Label(Tab.profile.name, systemImage: Tab.profile.icon)
                 }
-                .environmentObject(UserViewModel())
+                .environmentObject(userViewModel)
+        }
+        .onAppear {
+            UITabBar.appearance().backgroundColor = .black
         }
     }
 }

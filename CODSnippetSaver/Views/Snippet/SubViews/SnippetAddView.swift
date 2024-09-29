@@ -15,6 +15,8 @@ struct SnippetAddView: View {
     
     @State private var title = ""
     @State private var newSnippet: String = ""
+//    @State private var selectedCategory: FireCategory?
+    
     @Binding var isPresented: Bool
     
     var snippet: FireSnippet?
@@ -23,6 +25,7 @@ struct SnippetAddView: View {
     
     
     // MARK: - Init
+    
     init(snippet: FireSnippet? = nil, isPresented: Binding<Bool>) {
         if let snippet {
             self.snippet = snippet
@@ -47,17 +50,8 @@ struct SnippetAddView: View {
                             .frame(height: 500)
                     }
                 }
-                HStack {
-                    Button(action: saveSnippet) {
-                        Text("Save")
-                            .padding()
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .background(.red.opacity(0.5))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .padding(.horizontal)
-                    }
-                }
+               
+                PrimaryButtonView(title: "Save", action: saveSnippet)
             }
             .navigationTitle("Add Snippet")
             .navigationBarTitleDisplayMode(.inline)
@@ -82,10 +76,10 @@ struct SnippetAddView: View {
             snippetViewModel.updateSnippet(with: snippet.id, title: title , code: newSnippet)
         } else {
             snippetViewModel.addSnippet(title: title, code: newSnippet)
+            title = ""
+            newSnippet = ""
         }
         isPresented.toggle()
-//        title = ""
-//        newSnippet = ""
     }
 }
 

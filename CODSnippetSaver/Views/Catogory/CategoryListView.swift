@@ -11,10 +11,11 @@ struct CategoryListView: View {
     
     // MARK: - Properties
     
+    @EnvironmentObject var categoryViewModel: CategoryViewModel
     @EnvironmentObject var snippetViewModel: SnippetViewModel
     
-    @State var categories = ["Swift"]
     @State private var newCategory: String = ""
+    
     
     
     // MARK: - Body
@@ -28,40 +29,48 @@ struct CategoryListView: View {
                     .padding(.horizontal)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
+                
                 HStack {
-                    TextField("Category", text: $newCategory)
+                    TextField("", text: $newCategory)
                         .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
-                    Button {
-                        addCategory()
-                    } label: {
-                        Text("Add")
+                        .padding(.leading)
+                    Button(action: addCategory) {
+                        Image(systemName: "plus.circle")
+                            .tint(.turquoise)
                     }
+                    .disabled(newCategory.isEmpty)
                     .padding(.trailing)
                 }
                 
-                List(categories, id: \.self) { category in
-                    Section("Categories") {
+                List(categoryViewModel.categories) { category in
                         NavigationLink {
                             SnippetListView()
                         } label: {
-                            Text(category)
+                            Text(category.title)
+                                .swipeActions {
+                                    Button {
+                                        categoryViewModel.deleteCategory(with: category.id)
+                                    } label: {
+                                        Image(systemName: "trash")
+                                            .tint(.red)
+                                    }
+                                }
                         }
-                    }
                 }
             }
         }
         .environmentObject(snippetViewModel)
+        .environmentObject(categoryViewModel)
     }
     // MARK: - Functions
     
     private func addCategory() {
-        categories.append(newCategory)
-        newCategory = ""
+        categoryViewModel.addCategory(title: newCategory)
     }
 }
 
 #Preview {
     CategoryListView()
         .environmentObject(SnippetViewModel())
+        .environmentObject(CategoryViewModel())
 }

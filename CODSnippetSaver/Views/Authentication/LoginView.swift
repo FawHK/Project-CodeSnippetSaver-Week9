@@ -31,8 +31,6 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 280)
                 
-            
-            
             SecureField("Password", text: $password)
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 280)
@@ -53,7 +51,7 @@ struct LoginView: View {
                         .padding()
                         .foregroundStyle(.white)
                         .frame(width: 140)
-                        .background(.yellow.opacity(0.5))
+                        .background(.turquoise)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 
@@ -64,7 +62,7 @@ struct LoginView: View {
                         .padding()
                         .foregroundStyle(.white)
                         .frame(width: 140)
-                        .background(.brown.opacity(0.5))
+                        .background(.turquoise.opacity(0.5))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }

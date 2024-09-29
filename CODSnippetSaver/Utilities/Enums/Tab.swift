@@ -21,9 +21,9 @@ enum Tab: String ,Identifiable {
     }
     var icon: String {
         switch self {
-        case .categories: ""
-        case .snippets: ""
-        case .profile: ""
+        case .categories: "square.grid.3x3.topright.fill"
+        case .snippets: "curlybraces.square"
+        case .profile: "person.crop.circle.fill"
         }
     }
 

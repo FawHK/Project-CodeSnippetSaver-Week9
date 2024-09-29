@@ -81,6 +81,17 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func logout() {
+        do {
+            try FirebaseManager.shared.auth.signOut()
+            self.user = nil
+            print("You have successfully logged out")
+        } catch {
+            print("Error signing out: ", error.localizedDescription)
+        }
+    }
+
+    
     private func handleError(_ error: Error) {
         
         switch error {

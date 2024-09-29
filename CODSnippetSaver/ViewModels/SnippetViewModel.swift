@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 
 class SnippetViewModel: ObservableObject {
@@ -13,7 +14,7 @@ class SnippetViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var snippets: [FireSnippet] = []
-
+    
     
     
     
@@ -27,8 +28,38 @@ class SnippetViewModel: ObservableObject {
     
     // MARK: - Functions
     
+    func fetchSnippets(searchText: String = "") {
+        guard let userId = FirebaseManager.shared.userId else { return }
+        
+        var query = FirebaseManager.shared.database.collection("Snippets")
+            .whereField("userId", isEqualTo: userId)
+        
+        if !searchText.isEmpty {
+            query =
+            query.whereField("title", isGreaterThanOrEqualTo: searchText)
+            query.order(by: "title")
+        }
+        query.addSnapshotListener { querySnapshot, error in
+            if let error {
+                print(error)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else {
+                print("Loading Failed")
+                return
+            }
+            
+            self.snippets = documents.compactMap {
+                try? $0.data(as: FireSnippet.self)
+            }
+            
+        }
+    }
+    
     func addSnippet(title: String, code: String) {
         guard let userId = FirebaseManager.shared.userId else { return }
+      
         
         let snippet = FireSnippet(title: title, code: code, userId: userId)
         do {
@@ -50,29 +81,6 @@ class SnippetViewModel: ObservableObject {
         }
     }
     
-    
-    func fetchSnippets() {
-        guard let userId = FirebaseManager.shared.userId else { return }
-        
-        FirebaseManager.shared.database.collection("Snippets")
-            .whereField("userId", isEqualTo: userId)
-            .addSnapshotListener { querySnapshot, error in
-                if let error {
-                    print(error)
-                    return
-                }
-                
-                guard let documents = querySnapshot?.documents else {
-                    print("Fehler beim Laden der Tasks")
-                    return
-                }
-                
-                self.snippets = documents.compactMap {
-                    try? $0.data(as: FireSnippet.self)
-                }
-            }
-    }
-    
     func updateSnippet(with id: String?, title: String, code: String) {
         guard let id else { return }
         
@@ -86,5 +94,9 @@ class SnippetViewModel: ObservableObject {
             
             print("Snippet updated!")
         }
+    }
+    
+    func searchSnippets(byTitle title: String) {
+        self.snippets = snippets.filter { $0.title.lowercased().contains(title.lowercased()) }
     }
 }

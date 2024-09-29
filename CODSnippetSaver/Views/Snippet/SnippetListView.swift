@@ -14,6 +14,7 @@ struct SnippetListView: View {
     @EnvironmentObject var snippetViewModel: SnippetViewModel
     
     @State private var showAddSheet: Bool = false
+    @State private var searchText = ""
     
     
     
@@ -22,14 +23,24 @@ struct SnippetListView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                HStack {
+                    TextField("Search", text: $searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button {
+                        snippetViewModel.searchSnippets(byTitle: searchText)
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .padding(.leading)
+                }
+                .padding()
+                
                 List {
                     ForEach(snippetViewModel.snippets) { snippet in
                         NavigationLink {
                             SnippetDetailView(snippet: snippet)
                         } label: {
                             Text(snippet.title)
-                            Text(snippet.code)
-                            
                                 .swipeActions {
                                     Button {
                                         snippetViewModel.deleteSnippet(with: snippet.id)
@@ -39,23 +50,27 @@ struct SnippetListView: View {
                                     }
                                 }
                         }
-                      
                     }
                 }
                 
-                Button {
-                    showAddSheet.toggle()
-                } label: {
-                    Text("Add")
-                        .foregroundStyle(.blue)
-                }
+                PrimaryButtonView(title: "Add", action: addSnippet)
             }
             .navigationTitle("Your Snippets")
+            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showAddSheet) {
                 SnippetAddView(isPresented: $showAddSheet)
             }
         }
+        .onChange(of: searchText) {
+            snippetViewModel.fetchSnippets()
+        }
         .environmentObject(snippetViewModel)
+    }
+    
+    // MARK: - Functions
+    
+    private func addSnippet() {
+        showAddSheet.toggle()
     }
 }
 
