@@ -33,12 +33,14 @@ struct NavigatorView: View {
                     Label(Tab.snippets.name, systemImage: Tab.snippets.icon)
                 }
                 .environmentObject(snippetViewModel)
+                .environmentObject(categoryViewModel)
             
             ProfileView()
                 .tabItem {
                     Label(Tab.profile.name, systemImage: Tab.profile.icon)
                 }
                 .environmentObject(userViewModel)
+                .environmentObject(categoryViewModel)
         }
         .onAppear {
             UITabBar.appearance().backgroundColor = .black

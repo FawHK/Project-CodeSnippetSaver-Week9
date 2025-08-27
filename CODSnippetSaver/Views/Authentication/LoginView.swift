@@ -44,8 +44,6 @@ struct LoginView: View {
             HStack {
                 Button {
                     userViewModel.login(email: email, password: password)
-                    
-                    
                 } label: {
                     Text("Log In")
                         .padding()

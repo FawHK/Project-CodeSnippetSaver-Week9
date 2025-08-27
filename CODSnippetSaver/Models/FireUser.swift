@@ -16,6 +16,4 @@ struct FireUser: Codable {
     var name: String?
     var nickName: String?
     var age: String?
-    
-    
 }

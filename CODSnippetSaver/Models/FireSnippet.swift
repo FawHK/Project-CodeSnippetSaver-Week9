@@ -15,6 +15,5 @@ struct FireSnippet: Codable, Identifiable {
     var title: String
     var code: String
     var userId: String
-//    var categoryId: String?
-    
+    var categoryId: String
 }

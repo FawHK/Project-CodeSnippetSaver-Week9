@@ -12,6 +12,7 @@ struct ProfileView: View {
     // MARK: - Properties
     
     @EnvironmentObject private var userViewModel: UserViewModel
+    @EnvironmentObject private var categoryViewModel: CategoryViewModel
     
     @State private var showEditSheet = false
     
@@ -61,12 +62,14 @@ struct ProfileView: View {
                 .presentationDetents([.medium, .large])
         }
         .environmentObject(userViewModel)
+        .environmentObject(categoryViewModel)
     }
     
     // MARK: - Functions
     
     private func logout() {
         userViewModel.logout()
+        categoryViewModel.clearCategories()
     }
     
     private func editProfile() {

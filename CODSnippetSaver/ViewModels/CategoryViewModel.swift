@@ -15,8 +15,8 @@ class CategoryViewModel: ObservableObject {
     @Published var categories: [FireCategory] = []
     @Published var snippets: [FireSnippet] = []
     
-    //    private var categoryListener: ListenerRegistration?
-    //    private var snippetListener: ListenerRegistration?
+        private var categoryListener: ListenerRegistration?
+        private var snippetListener: ListenerRegistration?
     
     // MARK: - Init
     
@@ -28,8 +28,19 @@ class CategoryViewModel: ObservableObject {
     
     // MARK: - Functions
     
+    func clearCategories() {
+        categories.removeAll()
+        snippets.removeAll()
+        snippetListener?.remove()
+        categoryListener?.remove()
+    }
+    
     func fetchCategories() {
-        FirebaseManager.shared.database.collection("Categories").addSnapshotListener { querySnapshot, error in
+        guard let userId = FirebaseManager.shared.userId else { return }
+        
+        categoryListener = FirebaseManager.shared.database.collection("Categories")
+            .whereField("userId", isEqualTo: userId)
+            .addSnapshotListener { querySnapshot, error in
             if let error {
                 print("Error fetching categories", error)
                 return
@@ -46,10 +57,13 @@ class CategoryViewModel: ObservableObject {
     
     func fetchSnippets(for category: FireCategory) {
         guard let categoryId = category.id else { return }
+        guard let userId = FirebaseManager.shared.userId else { return }
         
         
-        FirebaseManager.shared.database.collection("Snippets")
-            .whereField("categoryId", isEqualTo: categoryId).addSnapshotListener { querySnapshot, error in
+       snippetListener = FirebaseManager.shared.database.collection("Snippets")
+            .whereField("userId", isEqualTo: userId)
+            .whereField("categoryId", isEqualTo: categoryId)
+            .addSnapshotListener { querySnapshot, error in
                 if let error {
                     print("Error fetching snippets", error)
                     return
@@ -67,7 +81,7 @@ class CategoryViewModel: ObservableObject {
     func addCategory(title: String) {
         guard let userId = FirebaseManager.shared.userId else { return }
         
-        let category = FireCategory(title: title)
+        let category = FireCategory(title: title, userId: userId)
         
         do {
             try FirebaseManager.shared.database.collection("Categories").addDocument(from: category)

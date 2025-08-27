@@ -44,7 +44,8 @@ struct CategoryListView: View {
                 
                 List(categoryViewModel.categories) { category in
                         NavigationLink {
-                            SnippetListView()
+                            SnippetListView(category: category)
+                                .environmentObject(SnippetViewModel(categoryId: category.id))
                         } label: {
                             Text(category.title)
                                 .swipeActions {

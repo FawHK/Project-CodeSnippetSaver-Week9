@@ -14,13 +14,31 @@ class SnippetViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var snippets: [FireSnippet] = []
+    private var categoryId: String?
+
+//    @Published var category: FireCategory
+//    private var firebaseManager: FirebaseManager
     
     
     
     
     // MARK: - Init
     
+//    init(category: FireCategory, firebaseManager: FirebaseManager = .shared) {
+//        self.category = category
+//        self.firebaseManager = firebaseManager
+//        
+//        Task {
+//            
+//        }
+//    }
+    
     init() {
+        fetchSnippets()
+    }
+    
+    init(categoryId: String?) {
+        self.categoryId = categoryId
         fetchSnippets()
     }
     
@@ -33,6 +51,10 @@ class SnippetViewModel: ObservableObject {
         
         var query = FirebaseManager.shared.database.collection("Snippets")
             .whereField("userId", isEqualTo: userId)
+        
+        if let categoryId {
+            query = query.whereField("categoryId", isEqualTo: categoryId)
+        }
         
         if !searchText.isEmpty {
             query =
@@ -56,12 +78,18 @@ class SnippetViewModel: ObservableObject {
             
         }
     }
+//    func addSnippet(_ snippet: Snippet, to category: Category) async {
+//        guard let userId = user?.uid else { return }
+//        let categoryRef = db.collection("users").document(userId).collection("categories").document(category.id!)
+//        let snippetRef = categoryRef.collection("snippets").document(snippet.id!)
+//        try? snippetRef.setData(from: snippet)
+//      }
     
-    func addSnippet(title: String, code: String) {
+    func addSnippet(title: String, code: String, categoryId: String) {
         guard let userId = FirebaseManager.shared.userId else { return }
       
         
-        let snippet = FireSnippet(title: title, code: code, userId: userId)
+        let snippet = FireSnippet(title: title, code: code, userId: userId, categoryId: categoryId)
         do {
             try FirebaseManager.shared.database.collection("Snippets").addDocument(from: snippet)
         } catch {

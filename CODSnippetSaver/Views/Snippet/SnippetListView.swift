@@ -12,6 +12,7 @@ struct SnippetListView: View {
     // MARK: - Properties
     
     @EnvironmentObject var snippetViewModel: SnippetViewModel
+    var category: FireCategory?
     
     @State private var showAddSheet: Bool = false
     @State private var searchText = ""
@@ -58,7 +59,7 @@ struct SnippetListView: View {
             .navigationTitle("Your Snippets")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showAddSheet) {
-                SnippetAddView(isPresented: $showAddSheet)
+                SnippetAddView(category: category, isPresented: $showAddSheet)
             }
         }
         .onChange(of: searchText) {

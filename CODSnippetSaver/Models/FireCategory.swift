@@ -12,6 +12,5 @@ struct FireCategory: Codable, Identifiable {
     @DocumentID var id: String?
     
     let title: String
-//    var snippets: [String]?
-    
+    var userId: String
 }

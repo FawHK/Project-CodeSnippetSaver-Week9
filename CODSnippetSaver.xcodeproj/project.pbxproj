@@ -27,6 +27,9 @@
 		F5ABD4BB2CA42A5600195808 /* FireUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ABD4BA2CA42A5600195808 /* FireUser.swift */; };
 		F5ABD4BD2CA43AB900195808 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5ABD4BC2CA43AB900195808 /* ProfileView.swift */; };
 		F5C670E92CA5B81400AFE233 /* SnippetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C670E82CA5B81400AFE233 /* SnippetDetailView.swift */; };
+		F5CED7C32CE38C060007202F /* CODSnippetSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CED7C12CE38C060007202F /* CODSnippetSaverTests.swift */; };
+		F5CED7C72CE38C0C0007202F /* CODSnippetSaverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CED7C42CE38C0C0007202F /* CODSnippetSaverUITests.swift */; };
+		F5CED7C82CE38C0C0007202F /* CODSnippetSaverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CED7C52CE38C0C0007202F /* CODSnippetSaverUITestsLaunchTests.swift */; };
 		F5E943382CA5674A00BE3072 /* FireSnippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E943372CA5674A00BE3072 /* FireSnippet.swift */; };
 		F5E9433A2CA567E300BE3072 /* SnippetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E943392CA567E300BE3072 /* SnippetViewModel.swift */; };
 		F5E9433D2CA56E8B00BE3072 /* SnippetAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E9433C2CA56E8B00BE3072 /* SnippetAddView.swift */; };
@@ -72,25 +75,15 @@
 		F5ABD4BA2CA42A5600195808 /* FireUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireUser.swift; sourceTree = "<group>"; };
 		F5ABD4BC2CA43AB900195808 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F5C670E82CA5B81400AFE233 /* SnippetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetDetailView.swift; sourceTree = "<group>"; };
+		F5CED7C12CE38C060007202F /* CODSnippetSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CODSnippetSaverTests.swift; sourceTree = "<group>"; };
+		F5CED7C42CE38C0C0007202F /* CODSnippetSaverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CODSnippetSaverUITests.swift; sourceTree = "<group>"; };
+		F5CED7C52CE38C0C0007202F /* CODSnippetSaverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CODSnippetSaverUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F5E943372CA5674A00BE3072 /* FireSnippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireSnippet.swift; sourceTree = "<group>"; };
 		F5E943392CA567E300BE3072 /* SnippetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetViewModel.swift; sourceTree = "<group>"; };
 		F5E9433C2CA56E8B00BE3072 /* SnippetAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetAddView.swift; sourceTree = "<group>"; };
 		F5E9AAE92CA6C1850010BEE0 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		F5E9AAEB2CA6D4B00010BEE0 /* NavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		F57105AE2CA1658E00E2922C /* CODSnippetSaverTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CODSnippetSaverTests;
-			sourceTree = "<group>";
-		};
-		F57105B82CA1658E00E2922C /* CODSnippetSaverUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CODSnippetSaverUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F57105982CA1658C00E2922C /* Frameworks */ = {
@@ -184,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				F57105CD2CA1659400E2922C /* CODSnippetSaver */,
-				F57105AE2CA1658E00E2922C /* CODSnippetSaverTests */,
-				F57105B82CA1658E00E2922C /* CODSnippetSaverUITests */,
+				F5CED7C22CE38C060007202F /* CODSnippetSaverTests */,
+				F5CED7C62CE38C0C0007202F /* CODSnippetSaverUITests */,
 				F57105E32CA176F500E2922C /* Frameworks */,
 				F571059C2CA1658C00E2922C /* Products */,
 			);
@@ -264,6 +257,23 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		F5CED7C22CE38C060007202F /* CODSnippetSaverTests */ = {
+			isa = PBXGroup;
+			children = (
+				F5CED7C12CE38C060007202F /* CODSnippetSaverTests.swift */,
+			);
+			path = CODSnippetSaverTests;
+			sourceTree = "<group>";
+		};
+		F5CED7C62CE38C0C0007202F /* CODSnippetSaverUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F5CED7C42CE38C0C0007202F /* CODSnippetSaverUITests.swift */,
+				F5CED7C52CE38C0C0007202F /* CODSnippetSaverUITestsLaunchTests.swift */,
+			);
+			path = CODSnippetSaverUITests;
+			sourceTree = "<group>";
+		};
 		F5E9433B2CA56E6600BE3072 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,9 +338,6 @@
 			dependencies = (
 				F57105AD2CA1658E00E2922C /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				F57105AE2CA1658E00E2922C /* CODSnippetSaverTests */,
-			);
 			name = CODSnippetSaverTests;
 			packageProductDependencies = (
 			);
@@ -350,9 +357,6 @@
 			);
 			dependencies = (
 				F57105B72CA1658E00E2922C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F57105B82CA1658E00E2922C /* CODSnippetSaverUITests */,
 			);
 			name = CODSnippetSaverUITests;
 			packageProductDependencies = (
@@ -493,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5CED7C32CE38C060007202F /* CODSnippetSaverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +505,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5CED7C72CE38C0C0007202F /* CODSnippetSaverUITests.swift in Sources */,
+				F5CED7C82CE38C0C0007202F /* CODSnippetSaverUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

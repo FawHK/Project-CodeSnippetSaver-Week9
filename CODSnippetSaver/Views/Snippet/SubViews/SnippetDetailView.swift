@@ -107,7 +107,7 @@ func register(email: String, password: String) {
         self.user = authResult.user
     }
 }
-""", userId: "1234567"))
+""", userId: "1234567", categoryId: "444"))
         .environmentObject(SnippetViewModel())
 }
 
