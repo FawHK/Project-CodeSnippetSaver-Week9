@@ -14,24 +14,12 @@ class SnippetViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var snippets: [FireSnippet] = []
-    private var categoryId: String?
-
-//    @Published var category: FireCategory
-//    private var firebaseManager: FirebaseManager
     
+    private var categoryId: String?
     
     
     
     // MARK: - Init
-    
-//    init(category: FireCategory, firebaseManager: FirebaseManager = .shared) {
-//        self.category = category
-//        self.firebaseManager = firebaseManager
-//        
-//        Task {
-//            
-//        }
-//    }
     
     init() {
         fetchSnippets()
@@ -78,12 +66,6 @@ class SnippetViewModel: ObservableObject {
             
         }
     }
-//    func addSnippet(_ snippet: Snippet, to category: Category) async {
-//        guard let userId = user?.uid else { return }
-//        let categoryRef = db.collection("users").document(userId).collection("categories").document(category.id!)
-//        let snippetRef = categoryRef.collection("snippets").document(snippet.id!)
-//        try? snippetRef.setData(from: snippet)
-//      }
     
     func addSnippet(title: String, code: String, categoryId: String) {
         guard let userId = FirebaseManager.shared.userId else { return }

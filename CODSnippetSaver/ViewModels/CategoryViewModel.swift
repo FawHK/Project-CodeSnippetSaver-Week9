@@ -15,8 +15,8 @@ class CategoryViewModel: ObservableObject {
     @Published var categories: [FireCategory] = []
     @Published var snippets: [FireSnippet] = []
     
-        private var categoryListener: ListenerRegistration?
-        private var snippetListener: ListenerRegistration?
+    private var categoryListener: ListenerRegistration?
+    private var snippetListener: ListenerRegistration?
     
     // MARK: - Init
     
